@@ -2,143 +2,90 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skills Section with Tabs</title>
+    <title>Login Page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
             margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
         }
-        .skills-container {
-            width: 60%;
+        .login-container {
             background-color: #fff;
-            padding: 20px;
+            padding: 30px;
+            width: 350px;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            text-align: center;
         }
-        .tab {
-            overflow: hidden;
-            border-bottom: 1px solid #ccc;
+        .login-container h2 {
+            margin-bottom: 30px;
+            font-size: 24px;
         }
-        .tab button {
-            background-color: inherit;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 14px 20px;
-            margin-right: 5px;
-            font-size: 17px;
-            transition: 0.3s;
-        }
-        .tab button:hover {
-            background-color: #ddd;
-        }
-        .tab button.active {
-            background-color: #5cb85c;
-            color: white;
-        }
-        .tabcontent {
-            display: none;
-            padding: 20px 0;
-        }
-        .tabcontent.active {
-            display: block;
-        }
-        /* Style for skill lists */
-        .skill-list {
-            list-style: none;
-            padding-left: 0;
-        }
-        .skill-list li {
-            background-color: #f1f1f1;
-            margin: 5px 0;
-            padding: 10px;
+        .input-field {
+            width: 80%; /* Make input fields narrower for better centering */
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
             border-radius: 5px;
+            font-size: 16px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .login-button {
+            width: 80%;
+            padding: 12px;
+            background-color: #5cb85c;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .login-button:hover {
+            background-color: #4cae4c;
+        }
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
 
-<div class="skills-container">
-    <h2>Skills</h2>
-
-    <!-- Tab navigation buttons -->
-    <div class="tab">
-        <button class="tablinks" onclick="openTab(event, 'Programming')" id="defaultOpen">Programming</button>
-        <button class="tablinks" onclick="openTab(event, 'WebDevelopment')">Web Development</button>
-        <button class="tablinks" onclick="openTab(event, 'DataScience')">Data Science</button>
-        <button class="tablinks" onclick="openTab(event, 'Design')">Design</button>
-    </div>
-
-    <!-- Tab content for each category -->
-    <div id="Programming" class="tabcontent">
-        <h3>Programming Skills</h3>
-        <ul class="skill-list">
-            <li>Python</li>
-            <li>Java</li>
-            <li>C++</li>
-            <li>JavaScript</li>
-        </ul>
-    </div>
-
-    <div id="WebDevelopment" class="tabcontent">
-        <h3>Web Development Skills</h3>
-        <ul class="skill-list">
-            <li>HTML & CSS</li>
-            <li>JavaScript</li>
-            <li>React</li>
-            <li>Node.js</li>
-        </ul>
-    </div>
-
-    <div id="DataScience" class="tabcontent">
-        <h3>Data Science Skills</h3>
-        <ul class="skill-list">
-            <li>Data Analysis</li>
-            <li>Machine Learning</li>
-            <li>R Programming</li>
-            <li>TensorFlow</li>
-        </ul>
-    </div>
-
-    <div id="Design" class="tabcontent">
-        <h3>Design Skills</h3>
-        <ul class="skill-list">
-            <li>Graphic Design</li>
-            <li>UI/UX Design</li>
-            <li>Adobe Photoshop</li>
-            <li>Figma</li>
-        </ul>
-    </div>
+<div class="login-container">
+    <h2>Login</h2>
+    <form onsubmit="return validateLogin()">
+        <input type="text" id="username" class="input-field" placeholder="Username" required><br>
+        <input type="password" id="password" class="input-field" placeholder="Password" required><br>
+        <button type="submit" class="login-button">Login</button>
+        <div id="error-message" class="error-message"></div>
+    </form>
 </div>
 
 <script>
-    function openTab(evt, tabName) {
-        // Hide all tabcontent
-        const tabcontent = document.getElementsByClassName("tabcontent");
-        for (let i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
+    function validateLogin() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
 
-        // Remove the active class from all tablinks
-        const tablinks = document.getElementsByClassName("tablinks");
-        for (let i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        if (username === "Smart_India" && password === "Hackathon") {
+            window.location.href = "success.html"; // Redirect to success page
+            return false; // Prevent form submission
+        } else {
+            document.getElementById("error-message").innerText = "Invalid username or password";
+            return false; // Prevent form submission
         }
-
-        // Show the current tab and add active class to the clicked button
-        document.getElementById(tabName).style.display = "block";
-        evt.currentTarget.className += " active";
     }
-
-    // Set default tab to open
-    document.getElementById("defaultOpen").click();
 </script>
 
 </body>
