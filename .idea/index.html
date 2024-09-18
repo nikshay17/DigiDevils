@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills Section with Tabs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .skills-container {
+            width: 60%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .tab {
+            overflow: hidden;
+            border-bottom: 1px solid #ccc;
+        }
+        .tab button {
+            background-color: inherit;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 20px;
+            margin-right: 5px;
+            font-size: 17px;
+            transition: 0.3s;
+        }
+        .tab button:hover {
+            background-color: #ddd;
+        }
+        .tab button.active {
+            background-color: #5cb85c;
+            color: white;
+        }
+        .tabcontent {
+            display: none;
+            padding: 20px 0;
+        }
+        .tabcontent.active {
+            display: block;
+        }
+        /* Style for skill lists */
+        .skill-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .skill-list li {
+            background-color: #f1f1f1;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="skills-container">
+    <h2>Skills</h2>
+
+    <!-- Tab navigation buttons -->
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'Programming')" id="defaultOpen">Programming</button>
+        <button class="tablinks" onclick="openTab(event, 'WebDevelopment')">Web Development</button>
+        <button class="tablinks" onclick="openTab(event, 'DataScience')">Data Science</button>
+        <button class="tablinks" onclick="openTab(event, 'Design')">Design</button>
+    </div>
+
+    <!-- Tab content for each category -->
+    <div id="Programming" class="tabcontent">
+        <h3>Programming Skills</h3>
+        <ul class="skill-list">
+            <li>Python</li>
+            <li>Java</li>
+            <li>C++</li>
+            <li>JavaScript</li>
+        </ul>
+    </div>
+
+    <div id="WebDevelopment" class="tabcontent">
+        <h3>Web Development Skills</h3>
+        <ul class="skill-list">
+            <li>HTML & CSS</li>
+            <li>JavaScript</li>
+            <li>React</li>
+            <li>Node.js</li>
+        </ul>
+    </div>
+
+    <div id="DataScience" class="tabcontent">
+        <h3>Data Science Skills</h3>
+        <ul class="skill-list">
+            <li>Data Analysis</li>
+            <li>Machine Learning</li>
+            <li>R Programming</li>
+            <li>TensorFlow</li>
+        </ul>
+    </div>
+
+    <div id="Design" class="tabcontent">
+        <h3>Design Skills</h3>
+        <ul class="skill-list">
+            <li>Graphic Design</li>
+            <li>UI/UX Design</li>
+            <li>Adobe Photoshop</li>
+            <li>Figma</li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    function openTab(evt, tabName) {
+        // Hide all tabcontent
+        const tabcontent = document.getElementsByClassName("tabcontent");
+        for (let i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Remove the active class from all tablinks
+        const tablinks = document.getElementsByClassName("tablinks");
+        for (let i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab and add active class to the clicked button
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    // Set default tab to open
+    document.getElementById("defaultOpen").click();
+</script>
+
+</body>
+</html>
